@@ -72,7 +72,9 @@ provider "aws" {
     instance_type          = "t2.micro"
     key_name              = "testkeypair"
     vpc_security_group_ids = [aws_security_group.dev_ssh_sg.id]
-  
+
+    user_data = base64encode(templatefile("${path.module}/dev_setup.sh", {}))
+
     tags = {
       Name = "${data.external.current_user.result.username}_dev"
       Owner = data.external.current_user.result.username
