@@ -1,6 +1,11 @@
-create_file
-  image: alpine
+stages:
+  - build
+  - test
+  - deploy
+
+build-job:
+  stage: build
   script:
-    - echo "Building..."
-    - mkdir build
-    - touch build/outout.exe
+    - echo "Running the build job..."
+    - mkdir build_artifacts
+    - touch build_artifacts/my_app.exe # Simulate a build output
